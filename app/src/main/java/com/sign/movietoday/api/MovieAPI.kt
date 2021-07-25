@@ -27,7 +27,7 @@ interface MovieAPI {
     ) : Response<MovieResponse>
     //+
     @GET("3/discover/movie")
-    suspend fun getFilmsByGenre(
+    suspend fun getMoviesByGenre(
         @Query("api_key")
         apiKey: String = API_KEY,
         @Query("with_genres")
@@ -59,7 +59,7 @@ interface MovieAPI {
     @GET("3/movie/{movie_id}/videos")
     suspend fun getTrailerByMovieID(
         @Path(value ="movie_id" ,encoded = true)
-        movieID : String,
+        movieID : Int,
         @Query("api_key")
         apiKey: String = API_KEY,
         @Query("language")
