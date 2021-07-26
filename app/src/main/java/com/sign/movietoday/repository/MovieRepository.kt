@@ -1,8 +1,9 @@
 package com.sign.movietoday.repository
 
 import com.sign.movietoday.api.RetrofitInstance
+import javax.inject.Inject
 
-class MovieRepository {
+class MovieRepository @Inject constructor() {
 
     suspend fun searchMovie(searchQuery : String, language : String, page : Int) =
         RetrofitInstance.api.searchMovie(query = searchQuery, language = language, pageNumber = page)

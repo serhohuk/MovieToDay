@@ -4,7 +4,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.sign.movietoday.models.movielistrequest.MovieResponse
-import com.sign.movietoday.other.Constants.LANG_ENG
 import com.sign.movietoday.other.Resource
 import com.sign.movietoday.repository.MovieRepository
 import kotlinx.coroutines.Dispatchers
@@ -81,6 +80,4 @@ class MovieViewModel @Inject constructor(private val repository: MovieRepository
         }
         return Resource.Error(response.message())
     }
-
-
 }
