@@ -23,9 +23,7 @@ import com.sign.movietoday.ui.MainActivity
 import com.sign.movietoday.viewmodels.MovieData
 import com.sign.movietoday.viewmodels.MovieViewModel
 import kotlinx.android.synthetic.main.main_fragment_layout.*
-import kotlinx.android.synthetic.main.main_fragment_layout.view.*
-import javax.inject.Inject
-import javax.inject.Named
+
 
 class MainFragment : Fragment(R.layout.main_fragment_layout) {
 
