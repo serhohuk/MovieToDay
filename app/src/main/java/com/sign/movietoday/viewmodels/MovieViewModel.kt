@@ -14,6 +14,7 @@ import javax.inject.Inject
 typealias MovieData = MutableLiveData<Resource<MovieResponse>>
 
 class MovieViewModel @Inject constructor(private val repository: MovieRepository) : ViewModel() {
+    var  isFirstStart = true
 
     var searchMoviesPage = 1
     var topRatedhMoviesPage = 1

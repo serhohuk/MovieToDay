@@ -38,7 +38,6 @@ class MovieAdapter : RecyclerView.Adapter<MovieAdapter.MoviesViewHolder>(){
             val imgURL = IMAGE_LOAD_BASE_URL+movie.poster_path
             Glide.with(this).load(imgURL).into(im_view_poster)
             tv_title.text = movie.title
-            tv_genres.text = movie.original_title
             tv_rating.text = movie.vote_average.toString()
         }
     }

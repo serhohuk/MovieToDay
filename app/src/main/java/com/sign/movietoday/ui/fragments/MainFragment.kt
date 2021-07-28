@@ -41,11 +41,7 @@ class MainFragment : Fragment(R.layout.main_fragment_layout) {
         viewModel = (activity as MainActivity).viewModel
 
         initRecViews()
-        viewModel.trendingMoviesToday(LANG_UA)
-        viewModel.upcomingMovies(LANG_UA)
-        viewModel.topRatedMovies(LANG_UA)
-
-        Toast.makeText(requireContext(),"ONVIEWCREATED",Toast.LENGTH_SHORT).show()
+        handleMovieDataIfFirstStart()
 
         observeMovieData(viewModel.topRatedMovieData,movieAdapterTopRated)
         observeMovieData(viewModel.upcomingMovieData,movieAdapterUpcoming)
@@ -99,5 +95,12 @@ class MainFragment : Fragment(R.layout.main_fragment_layout) {
         setupRecyclerView(rv_upcoming,movieAdapterUpcoming)
     }
 
-
+    fun handleMovieDataIfFirstStart(){
+        if (viewModel.isFirstStart) {
+            viewModel.trendingMoviesToday(LANG_UA)
+            viewModel.upcomingMovies(LANG_UA)
+            viewModel.topRatedMovies(LANG_UA)
+            viewModel.isFirstStart = false
+        }
+    }
 }
