@@ -5,7 +5,11 @@
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.sign.movietoday.ui.fragments.MainFragment"
-        android:label="MainFragment" />
+        android:label="MainFragment" >
+        <action
+            android:id="@+id/action_mainFragment_to_moviesListFragment"
+            app:destination="@id/moviesListFragment" />
+    </fragment>
     <fragment
         android:id="@+id/movieFragment"
         android:name="com.sign.movietoday.ui.fragments.MovieFragment"

@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -18,6 +19,7 @@ import com.sign.movietoday.adapters.MovieAdapter
 import com.sign.movietoday.application.MyApplication
 import com.sign.movietoday.other.Constants.LANG_UA
 import com.sign.movietoday.other.Resource
+import com.sign.movietoday.ui.MainActivity
 import com.sign.movietoday.viewmodels.MovieData
 import com.sign.movietoday.viewmodels.MovieViewModel
 import kotlinx.android.synthetic.main.main_fragment_layout.*
@@ -27,42 +29,38 @@ import javax.inject.Named
 
 class MainFragment : Fragment(R.layout.main_fragment_layout) {
 
-    @Inject
-    @Named("viewModel")
-    lateinit var movieViewModelFactory :ViewModelProvider.Factory
-    lateinit var movieAdapter: MovieAdapter
-    lateinit var movieAdapter2: MovieAdapter
 
-    private val viewModel : MovieViewModel by viewModels { movieViewModelFactory  }
+    lateinit var movieAdapterTopRated: MovieAdapter
+    lateinit var movieAdapterTrending : MovieAdapter
+    lateinit var movieAdapterUpcoming : MovieAdapter
+
+    lateinit var viewModel : MovieViewModel
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val appComponent = (requireActivity().application as MyApplication).appComponent
         appComponent.inject(this)
-        viewModel.trendingMoviesToday(LANG_UA)
-        viewModel.topRatedMovies(LANG_UA)
-        movieAdapter = MovieAdapter()
-        movieAdapter2 = MovieAdapter()
-        Toast.makeText(requireContext(),"ONVIEWCREATED",Toast.LENGTH_SHORT).show()
-        setupRecyclerView(rv_trending,movieAdapter)
-        setupRecyclerView(rv_top_rated,movieAdapter2)
-        observeMovieData(viewModel.trendingMovieData)
-        //observeMovieData(viewModel.topRatedMovieData)
-        viewModel.topRatedMovieData.observe(viewLifecycleOwner, Observer { response ->
-                when(response){
-                    is Resource.Succes->{
-                        response.data?.let { trendingResponse ->
-                            movieAdapter2.differ.submitList(trendingResponse.results)
-                        }
-                    }
-                    is Resource.Error -> {
-                        response.message?.let {message->
-                            Log.e("SIMPLE", "An error occured $message")
-                        }
-                    }
-                }
-            })
+        viewModel = (activity as MainActivity).viewModel
 
+        initRecViews()
+        viewModel.trendingMoviesToday(LANG_UA)
+        viewModel.upcomingMovies(LANG_UA)
+        viewModel.topRatedMovies(LANG_UA)
+
+        Toast.makeText(requireContext(),"ONVIEWCREATED",Toast.LENGTH_SHORT).show()
+
+        observeMovieData(viewModel.topRatedMovieData,movieAdapterTopRated)
+        observeMovieData(viewModel.upcomingMovieData,movieAdapterUpcoming)
+        observeMovieData(viewModel.trendingMovieData, movieAdapterTrending)
+
+        button_top_rated.setOnClickListener {
+            findNavController().navigate(R.id.action_mainFragment_to_moviesListFragment)
+        }
+
+        button_trending.setOnClickListener {
+
+        }
+        button_upcoming.setOnClickListener {  }
     }
 
 
@@ -77,7 +75,7 @@ class MainFragment : Fragment(R.layout.main_fragment_layout) {
         }
     }
 
-    private fun observeMovieData(vmMovieData: MovieData){
+    private fun observeMovieData(vmMovieData: MovieData, movieAdapter: MovieAdapter){
         vmMovieData.observe(viewLifecycleOwner, Observer { response ->
             when(response){
                 is Resource.Succes->{
@@ -94,6 +92,14 @@ class MainFragment : Fragment(R.layout.main_fragment_layout) {
         })
     }
 
+    private fun initRecViews(){
+        movieAdapterTopRated = MovieAdapter()
+        movieAdapterUpcoming = MovieAdapter()
+        movieAdapterTrending = MovieAdapter()
+        setupRecyclerView(rv_top_rated,movieAdapterTopRated)
+        setupRecyclerView(rv_trending,movieAdapterTrending)
+        setupRecyclerView(rv_upcoming,movieAdapterUpcoming)
+    }
 
 
 }

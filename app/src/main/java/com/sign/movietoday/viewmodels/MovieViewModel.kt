@@ -57,7 +57,7 @@ class MovieViewModel @Inject constructor(private val repository: MovieRepository
 
     fun upcomingMovies(language: String){
         viewModelScope.launch(Dispatchers.IO) {
-            val response = repository.getTrendingMoviesToday(language, upcomingMoviesPage)
+            val response = repository.getUpcomingMovies(language, upcomingMoviesPage)
             safeMovieRequest(upcomingMovieData, response)
         }
     }

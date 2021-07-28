@@ -40,12 +40,19 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp" />
 
-        <EditText
-            android:id="@+id/edtype"
+        <Button
+            android:id="@+id/button_upcoming"
+            style="@style/MoviesButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text"/>
+            android:layout_marginTop="10dp"
+            android:text="Upcoming Movies" />
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_upcoming"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp" />
 
     </LinearLayout>
 
