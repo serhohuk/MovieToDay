@@ -1,5 +1,7 @@
 package com.sign.movietoday.models.movielistrequest
 
+import java.io.Serializable
+
 data class Result(
     val adult: Boolean,
     val backdrop_path: String,
@@ -16,4 +18,4 @@ data class Result(
     val video: Boolean,
     val vote_average: Double,
     val vote_count: Int
-)
+) : Serializable

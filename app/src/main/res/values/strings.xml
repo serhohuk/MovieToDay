@@ -3,4 +3,9 @@
     <string name="main">Main</string>
     <string name="search">Search</string>
     <string name="favorite">Favorite</string>
+    <string name="trending_movies_today">Trending Movies Today</string>
+    <string name="top_rated_movies">Top Rated Movies</string>
+    <string name="upcoming_movies">Upcoming Movies</string>
+    <string name="overview">Overview</string>
+    <string name="watch_trailer">Watch Trailer</string>
 </resources>

@@ -18,7 +18,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="Trending Movies Today" />
+                android:text="@string/trending_movies_today" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_trending"
@@ -32,7 +32,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="Top Rated Movies" />
+                android:text="@string/top_rated_movies" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_top_rated"
@@ -46,7 +46,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="Upcoming Movies" />
+            android:text="@string/upcoming_movies" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_upcoming"

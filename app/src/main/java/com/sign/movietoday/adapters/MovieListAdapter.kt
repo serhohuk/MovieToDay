@@ -9,14 +9,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.sign.movietoday.R
 import com.sign.movietoday.models.movielistrequest.Result
-import com.sign.movietoday.other.Constants.IMAGE_LOAD_BASE_URL
+import com.sign.movietoday.other.Constants
 import kotlinx.android.synthetic.main.movie_item.view.*
 
-class MovieAdapter : RecyclerView.Adapter<MovieAdapter.MoviesViewHolder>(){
+class MovieListAdapter: RecyclerView.Adapter<MovieListAdapter.MoviesViewHolder>(){
 
     inner class MoviesViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView)
 
-    private val differCallBack = object :DiffUtil.ItemCallback<Result>(){
+    private val differCallBack = object : DiffUtil.ItemCallback<Result>(){
         override fun areItemsTheSame(oldItem: Result, newItem: Result): Boolean {
             return oldItem.id == newItem.id
         }
@@ -29,13 +29,13 @@ class MovieAdapter : RecyclerView.Adapter<MovieAdapter.MoviesViewHolder>(){
     val differ = AsyncListDiffer(this, differCallBack)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MoviesViewHolder {
-        return MoviesViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.movie_item, parent,false))
+        return MoviesViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.movie_item_list, parent,false))
     }
 
     override fun onBindViewHolder(holder: MoviesViewHolder, position: Int) {
         val movie = differ.currentList[position]
         holder.itemView.apply {
-            val imgURL = IMAGE_LOAD_BASE_URL+movie.poster_path
+            val imgURL = Constants.IMAGE_LOAD_BASE_URL +movie.poster_path
             Glide.with(this).load(imgURL).into(im_view_poster)
             tv_title.text = movie.title
             tv_rating.text = movie.vote_average.toString()

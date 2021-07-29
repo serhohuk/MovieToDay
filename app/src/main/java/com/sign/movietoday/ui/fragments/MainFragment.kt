@@ -48,13 +48,39 @@ class MainFragment : Fragment(R.layout.main_fragment_layout) {
         observeMovieData(viewModel.trendingMovieData, movieAdapterTrending)
 
         button_top_rated.setOnClickListener {
-            findNavController().navigate(R.id.action_mainFragment_to_moviesListFragment)
+            val button_text = button_top_rated.text.toString()
+            val action = MainFragmentDirections.actionMainFragmentToMoviesListFragment(button_text)
+            findNavController().navigate(action)
         }
 
         button_trending.setOnClickListener {
-
+            val button_text = button_trending.text.toString()
+            val action = MainFragmentDirections.actionMainFragmentToMoviesListFragment(button_text)
+            findNavController().navigate(action)
         }
-        button_upcoming.setOnClickListener {  }
+
+        button_upcoming.setOnClickListener {
+            val button_text = button_upcoming.text.toString()
+            val action = MainFragmentDirections.actionMainFragmentToMoviesListFragment(button_text)
+            findNavController().navigate(action)
+        }
+
+        movieAdapterTrending.setOnItemClickListener {
+            Log.e("TAGING", "START")
+            val action = MainFragmentDirections.actionMainFragmentToMovieFragment(it)
+            findNavController().navigate(action)
+        }
+
+        movieAdapterTopRated.setOnItemClickListener {
+            val action = MainFragmentDirections.actionMainFragmentToMovieFragment(it)
+            findNavController().navigate(action)
+        }
+
+        movieAdapterUpcoming.setOnItemClickListener {
+            val action = MainFragmentDirections.actionMainFragmentToMovieFragment(it)
+            findNavController().navigate(action)
+        }
+
     }
 
 
@@ -100,6 +126,7 @@ class MainFragment : Fragment(R.layout.main_fragment_layout) {
             viewModel.trendingMoviesToday(LANG_UA)
             viewModel.upcomingMovies(LANG_UA)
             viewModel.topRatedMovies(LANG_UA)
+            viewModel.getAllGenres(LANG_UA)
             viewModel.isFirstStart = false
         }
     }
