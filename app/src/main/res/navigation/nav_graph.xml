@@ -46,5 +46,9 @@
     <fragment
         android:id="@+id/searchFragment"
         android:name="com.sign.movietoday.ui.fragments.SearchFragment"
-        android:label="SearchFragment" />
+        android:label="SearchFragment" >
+        <action
+            android:id="@+id/action_searchFragment_to_movieFragment"
+            app:destination="@id/movieFragment" />
+    </fragment>
 </navigation>

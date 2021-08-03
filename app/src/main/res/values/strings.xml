@@ -8,4 +8,10 @@
     <string name="upcoming_movies">Upcoming Movies</string>
     <string name="overview">Overview</string>
     <string name="watch_trailer">Watch Trailer</string>
+
+    <string-array name="lang_name">
+        <item>EN</item>
+        <item>UA</item>
+        <item>RU</item>
+    </string-array>
 </resources>
