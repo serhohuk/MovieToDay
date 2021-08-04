@@ -1,0 +1,25 @@
+<resources>
+    <string name="main">Головна</string>
+    <string name="search">Пошук</string>
+    <string name="favorite">Улюблені</string>
+    <string name="trending_movies_today">Трендові фільми сьогодні</string>
+    <string name="top_rated_movies">Рейтингові фільми</string>
+    <string name="overview">Опис фільму</string>
+    <string name="watch_trailer">Отримати список трейлерів</string>
+
+    <string-array name="lang_name">
+        <item>EN</item>
+        <item>UA</item>
+        <item>RU</item>
+    </string-array>
+    <string name="upcoming_movies">Скоро в кінотеатрах</string>
+    <string name="settings">Налаштування</string>
+    <string name="change_language">Змінити мову</string>
+    <string name="ukr_lang">Українська</string>
+    <string name="eng_lang">Англійська</string>
+    <string name="rus_lang">Російська</string>
+    <string name="choseLang">Оберіть мову програми</string>
+    <string name="submit">Підтвердити</string>
+    <string name="cancel">Відмінити</string>
+    <string name="toast_your_lang_change">"Мова зміниться після перезагрузки "</string>
+</resources>

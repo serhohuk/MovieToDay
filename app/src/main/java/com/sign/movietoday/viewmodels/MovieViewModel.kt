@@ -10,6 +10,7 @@ import com.sign.movietoday.models.genresrequest.GenreResponse
 import com.sign.movietoday.models.movielistrequest.MovieResponse
 import com.sign.movietoday.models.movielistrequest.Result
 import com.sign.movietoday.models.trailerrequest.TrailerResponse
+import com.sign.movietoday.other.Constants.LANG_ENG
 import com.sign.movietoday.other.Resource
 import com.sign.movietoday.repository.MovieRepository
 import kotlinx.coroutines.Dispatchers
@@ -21,6 +22,7 @@ typealias MovieData = MutableLiveData<Resource<MovieResponse>>
 
 class MovieViewModel @Inject constructor(private val repository: MovieRepository) : ViewModel() {
     var  isFirstStart = true
+    var requestLang = LANG_ENG
     val readAllDataFromDB : LiveData<List<Result>>
 
     var searchMoviesPage = 1
@@ -35,7 +37,6 @@ class MovieViewModel @Inject constructor(private val repository: MovieRepository
     var trendingMovieData : MovieData = MutableLiveData()
     var upcomingMovieData : MovieData = MutableLiveData()
     var trailerData : MutableLiveData<TrailerResponse> = MutableLiveData()
-
 
 
     var genresData : List<Genre> ? = null

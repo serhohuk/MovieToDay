@@ -11,4 +11,7 @@ object Constants {
     const val LANG_ENG = "en-US"
     const val LANG_RU = "ru"
     const val LANG_UA = "uk"
+
+    const val SETTINGS_APP = "mySettings"
+    const val APP_LANGUAGE = "LANGUAGE"
 }

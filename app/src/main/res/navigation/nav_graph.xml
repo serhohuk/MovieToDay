@@ -51,4 +51,8 @@
             android:id="@+id/action_searchFragment_to_movieFragment"
             app:destination="@id/movieFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.sign.movietoday.ui.fragments.SettingsFragment"
+        android:label="SettingsFragment" />
 </navigation>

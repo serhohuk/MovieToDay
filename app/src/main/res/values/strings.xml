@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MovieToDay</string>
+    <string name="app_name" translatable="false">MovieToDay</string>
     <string name="main">Main</string>
     <string name="search">Search</string>
     <string name="favorite">Favorite</string>
@@ -8,6 +8,18 @@
     <string name="upcoming_movies">Upcoming Movies</string>
     <string name="overview">Overview</string>
     <string name="watch_trailer">Watch Trailer</string>
+    <string name="settings">Settings</string>
+    <string name="change_language">Change Language</string>
+    <string name="ukr_lang">Ukrainian</string>
+    <string name="eng_lang">English</string>
+    <string name="rus_lang">Russian</string>
+    <string name="choseLang">Choose app language</string>
+    <string name="submit">Submit</string>
+    <string name="cancel">Cancel</string>
+    <string name="toast_your_lang_change">Language will be changed after App restart</string>
+
+
+
 
     <string-array name="lang_name">
         <item>EN</item>

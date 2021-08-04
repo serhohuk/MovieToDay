@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -17,7 +16,6 @@ import com.sign.movietoday.R
 import com.sign.movietoday.adapters.ListItemDecorator
 import com.sign.movietoday.adapters.TrailerAdapter
 import com.sign.movietoday.other.Constants.IMAGE_LOAD_BASE_URL
-import com.sign.movietoday.other.Constants.LANG_ENG
 import com.sign.movietoday.other.Constants.VIDEO_BASE_URL
 import com.sign.movietoday.ui.MainActivity
 import com.sign.movietoday.viewmodels.MovieViewModel
@@ -34,7 +32,7 @@ class MovieFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupRecyclerView()
-        viewModel.getTrailerByMovieID(args.resultResponse.id, LANG_ENG)
+        viewModel.getTrailerByMovieID(args.resultResponse.id, viewModel.requestLang)
 
         saveItem.setOnClickListener {
             it.visibility = View.INVISIBLE

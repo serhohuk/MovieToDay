@@ -123,10 +123,10 @@ class MainFragment : Fragment(R.layout.main_fragment_layout) {
 
     fun handleMovieDataIfFirstStart(){
         if (viewModel.isFirstStart) {
-            viewModel.trendingMoviesToday(LANG_UA)
-            viewModel.upcomingMovies(LANG_UA)
-            viewModel.topRatedMovies(LANG_UA)
-            viewModel.getAllGenres(LANG_UA)
+            viewModel.trendingMoviesToday(viewModel.requestLang)
+            viewModel.upcomingMovies(viewModel.requestLang)
+            viewModel.topRatedMovies(viewModel.requestLang)
+            viewModel.getAllGenres(viewModel.requestLang)
             viewModel.isFirstStart = false
         }
     }
