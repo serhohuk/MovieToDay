@@ -1,11 +1,15 @@
 package com.sign.movietoday.models.movielistrequest
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import java.io.Serializable
 
+@Entity(tableName = "saved_movies")
 data class Result(
     val adult: Boolean,
     val backdrop_path: String,
     val genre_ids: List<Int>,
+    @PrimaryKey
     val id: Int,
     val media_type: String?,
     val original_language: String,

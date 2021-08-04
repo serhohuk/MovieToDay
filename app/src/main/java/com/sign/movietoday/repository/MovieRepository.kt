@@ -1,9 +1,12 @@
 package com.sign.movietoday.repository
 
+import androidx.lifecycle.LiveData
 import com.sign.movietoday.api.RetrofitInstance
+import com.sign.movietoday.models.movielistrequest.Result
+import com.sign.movietoday.room.AppDao
 import javax.inject.Inject
 
-class MovieRepository @Inject constructor() {
+class MovieRepository @Inject constructor(private val dao: AppDao) {
 
     suspend fun searchMovie(searchQuery : String, language : String, page : Int) =
         RetrofitInstance.api.searchMovie(query = searchQuery, language = language, pageNumber = page)
@@ -25,4 +28,16 @@ class MovieRepository @Inject constructor() {
 
     suspend fun getTrailerByMovieID(movieID : Int, language: String) =
         RetrofitInstance.api.getTrailerByMovieID(movieID = movieID, language = language)
+
+    suspend fun insertMovie(result: Result){
+        dao.insertMovie(result)
+    }
+
+    suspend fun deleteMovie(result: Result){
+        dao.deleteMovie(result)
+    }
+
+    val readAllData : LiveData<List<Result>> = dao.readAllData()
+
+    fun getByID(id : Int) : LiveData<Result> = dao.getByID(id)
 }

@@ -2,6 +2,7 @@ package com.sign.movietoday.application
 
 import android.app.Application
 import com.sign.movietoday.di.AppComponent
+import com.sign.movietoday.di.AppModule
 import com.sign.movietoday.di.DaggerAppComponent
 
 class MyApplication : Application() {
@@ -10,6 +11,6 @@ class MyApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        appComponent = DaggerAppComponent.builder().build()
+        appComponent = DaggerAppComponent.builder().appModule(AppModule(this)).build()
     }
 }

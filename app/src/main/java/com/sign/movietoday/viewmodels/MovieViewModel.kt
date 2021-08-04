@@ -1,12 +1,14 @@
 package com.sign.movietoday.viewmodels
 
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.sign.movietoday.models.genresrequest.Genre
 import com.sign.movietoday.models.genresrequest.GenreResponse
 import com.sign.movietoday.models.movielistrequest.MovieResponse
+import com.sign.movietoday.models.movielistrequest.Result
 import com.sign.movietoday.other.Resource
 import com.sign.movietoday.repository.MovieRepository
 import kotlinx.coroutines.Dispatchers
@@ -18,6 +20,7 @@ typealias MovieData = MutableLiveData<Resource<MovieResponse>>
 
 class MovieViewModel @Inject constructor(private val repository: MovieRepository) : ViewModel() {
     var  isFirstStart = true
+    val readAllDataFromDB : LiveData<List<Result>>
 
     var searchMoviesPage = 1
     var topRatedhMoviesPage = 1
@@ -31,7 +34,13 @@ class MovieViewModel @Inject constructor(private val repository: MovieRepository
     var trendingMovieData : MovieData = MutableLiveData()
     var upcomingMovieData : MovieData = MutableLiveData()
 
+    var MovieByID : MutableLiveData<Result> = MutableLiveData()
+
     var genresData : List<Genre> ? = null
+
+    init {
+        readAllDataFromDB = repository.readAllData
+    }
 
     fun searchMovie(searchQuery : String, language : String){
         viewModelScope.launch(Dispatchers.IO){
@@ -121,4 +130,21 @@ class MovieViewModel @Inject constructor(private val repository: MovieRepository
         }
         return Resource.Error(response.message())
     }
+
+    fun addMovie(movie : Result){
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.insertMovie(movie)
+        }
+    }
+
+    fun deleteMovie(movie : Result){
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.deleteMovie(movie)
+        }
+    }
+
+    fun getMovieByID(id : Int) : LiveData<Result>{
+        return repository.getByID(id)
+    }
+
 }
