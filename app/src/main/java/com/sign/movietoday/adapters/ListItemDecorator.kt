@@ -13,10 +13,6 @@ class ListItemDecorator(private val space : Int) : RecyclerView.ItemDecoration()
         state: RecyclerView.State
     ) {
         super.getItemOffsets(outRect, view, parent, state)
-        val itemPosition = parent.getChildAdapterPosition(view)
-//        if (itemPosition%2==0){
-//            outRect.right = space
-//        }
         outRect.bottom = space
     }
 }

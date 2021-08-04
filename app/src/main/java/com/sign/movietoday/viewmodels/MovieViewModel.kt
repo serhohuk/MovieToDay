@@ -9,6 +9,7 @@ import com.sign.movietoday.models.genresrequest.Genre
 import com.sign.movietoday.models.genresrequest.GenreResponse
 import com.sign.movietoday.models.movielistrequest.MovieResponse
 import com.sign.movietoday.models.movielistrequest.Result
+import com.sign.movietoday.models.trailerrequest.TrailerResponse
 import com.sign.movietoday.other.Resource
 import com.sign.movietoday.repository.MovieRepository
 import kotlinx.coroutines.Dispatchers
@@ -33,8 +34,9 @@ class MovieViewModel @Inject constructor(private val repository: MovieRepository
     var byGenresMovieData : MovieData = MutableLiveData()
     var trendingMovieData : MovieData = MutableLiveData()
     var upcomingMovieData : MovieData = MutableLiveData()
+    var trailerData : MutableLiveData<TrailerResponse> = MutableLiveData()
 
-    var MovieByID : MutableLiveData<Result> = MutableLiveData()
+
 
     var genresData : List<Genre> ? = null
 
@@ -129,6 +131,21 @@ class MovieViewModel @Inject constructor(private val repository: MovieRepository
             }
         }
         return Resource.Error(response.message())
+    }
+
+    fun getTrailerByMovieID(movieID : Int, language: String){
+        viewModelScope.launch(Dispatchers.IO) {
+            val response = repository.getTrailerByMovieID(movieID, language)
+            try {
+                if (response.isSuccessful){
+                    response.body()?.let { responseBody-> trailerData.postValue(responseBody) }
+                }
+                Log.e("Error","${response.message()}")
+            }
+            catch (t : Throwable){
+                Log.e("Error","Trailer doesn`t have response")
+            }
+        }
     }
 
     fun addMovie(movie : Result){
