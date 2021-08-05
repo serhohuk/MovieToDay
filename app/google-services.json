@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "161672587223",
+    "project_id": "movietoday-4151c",
+    "storage_bucket": "movietoday-4151c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:161672587223:android:116e7764484b91f7f20d92",
+        "android_client_info": {
+          "package_name": "com.sign.movietoday"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "161672587223-4r56g6t3rlim361223koccplcohngofv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBIrLCTmtWlrnKz1-gAuoswmyrLs_BFZbo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "161672587223-4r56g6t3rlim361223koccplcohngofv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

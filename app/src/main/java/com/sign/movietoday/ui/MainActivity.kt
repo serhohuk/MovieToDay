@@ -10,6 +10,9 @@ import androidx.activity.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.ktx.Firebase
 import com.sign.movietoday.R
 import com.sign.movietoday.application.MyApplication
 import com.sign.movietoday.other.Constants.APP_LANGUAGE
@@ -28,12 +31,16 @@ class MainActivity : AppCompatActivity() {
     lateinit var movieViewModelFactory : ViewModelProvider.Factory
     val viewModel : MovieViewModel by viewModels { movieViewModelFactory  }
     private lateinit var sharedPreferences: SharedPreferences
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val appComponent = (application as MyApplication).appComponent
         appComponent.inject(this)
+
+        firebaseAnalytics = Firebase.analytics
+
 
         sharedPreferences = getSharedPreferences(SETTINGS_APP,Context.MODE_PRIVATE)
         val configurationLanguage = sharedPreferences.getString(APP_LANGUAGE, LANG_ENG)

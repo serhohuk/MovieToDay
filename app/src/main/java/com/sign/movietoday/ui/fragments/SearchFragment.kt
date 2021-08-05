@@ -27,7 +27,6 @@ import kotlinx.coroutines.launch
 
 class SearchFragment : Fragment(R.layout.search_fragment_layout) {
     private lateinit var viewModel: MovieViewModel
-    private var currentSearchLanguage = LANG_ENG
     private lateinit var searchAdapter : MovieListAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -35,17 +34,7 @@ class SearchFragment : Fragment(R.layout.search_fragment_layout) {
         viewModel = (activity as MainActivity).viewModel
         setupRecView()
 
-        spinner_lang.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-            override fun onItemSelected(adapterView: AdapterView<*>?, view: View?, position: Int, item_id: Long) {
-                when(adapterView?.getItemAtPosition(position).toString()){
-                    resources.getStringArray(R.array.lang_name)[0]-> currentSearchLanguage = LANG_ENG
-                    resources.getStringArray(R.array.lang_name)[1]-> currentSearchLanguage = LANG_UA
-                    resources.getStringArray(R.array.lang_name)[2]-> currentSearchLanguage = LANG_RU
-                }
-            }
 
-            override fun onNothingSelected(p0: AdapterView<*>?) {}
-        }
 
         var job : Job? = null
         et_search.addTextChangedListener { editable->
@@ -54,7 +43,7 @@ class SearchFragment : Fragment(R.layout.search_fragment_layout) {
                 delay(500L)
                 editable?.let {
                     if(editable.toString().isNotEmpty()){
-                        viewModel.searchMovie(editable.toString(),currentSearchLanguage)
+                        viewModel.searchMovie(editable.toString(),viewModel.requestLang)
                     }
                 }
             }
