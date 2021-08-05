@@ -1,6 +1,6 @@
 # MovieToDay
 
-This is my pet project to find a movie for evening.
+This is my pet project to find a movie for evening. Developed by using https://www.themoviedb.org/ API
 
 # ⚙ Technologies
 
