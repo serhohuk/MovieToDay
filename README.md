@@ -9,3 +9,4 @@ This is my pet project to find a movie for evening.
 * Coroutines;
 * Depedency Injection with Dagger2;
 * Navigation Component;
+* Firebase Analytics and Crashlytics;
