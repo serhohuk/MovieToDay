@@ -17,8 +17,9 @@
     <string name="submit">Submit</string>
     <string name="cancel">Cancel</string>
     <string name="toast_your_lang_change">Language will be changed after App restart</string>
-
-
+    <string name="snackbar_empty_response">Couldn\'t find trailers</string>
+    <string name="hide">Hide</string>
+    <string name="source_of_the_data">Source of the data</string>
 
 
     <string-array name="lang_name">

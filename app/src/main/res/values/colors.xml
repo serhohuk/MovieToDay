@@ -3,6 +3,8 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
-    <color name="colorBackground">#433E85</color>
+    <color name="colorBackgroundMovie">#433E85</color>
+    <color name="colorBackgroundMain">#D4DADF</color>
     <color name="colorBrown">#3e2723</color>
+    <color name="colorPrimaryDarkMain">#AFB7BD</color>
 </resources>

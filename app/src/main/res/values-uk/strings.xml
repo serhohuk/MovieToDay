@@ -22,4 +22,7 @@
     <string name="submit">Підтвердити</string>
     <string name="cancel">Відмінити</string>
     <string name="toast_your_lang_change">"Мова зміниться після перезагрузки "</string>
+    <string name="snackbar_empty_response">Не вдалося знайти трейлери</string>
+    <string name="hide">Сховати</string>
+    <string name="source_of_the_data">Джерело данних</string>
 </resources>

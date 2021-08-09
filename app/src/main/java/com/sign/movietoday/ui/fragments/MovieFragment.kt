@@ -2,6 +2,7 @@ package com.sign.movietoday.ui.fragments
 
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +13,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.google.android.material.snackbar.Snackbar
 import com.sign.movietoday.R
 import com.sign.movietoday.adapters.ListItemDecorator
 import com.sign.movietoday.adapters.TrailerAdapter
@@ -50,8 +52,15 @@ class MovieFragment : Fragment() {
 
         btn_watch_trailer.setOnClickListener {
             viewModel.trailerData.observe(viewLifecycleOwner, Observer {
-                trailerAdapter.differ.submitList(it.results)
-                rec_view_trailers.visibility = View.VISIBLE
+                if (it.results.size>=1) {
+                    trailerAdapter.differ.submitList(it.results)
+                    rec_view_trailers.visibility = View.VISIBLE
+                }
+                else{
+                    Snackbar.make(view, getString(R.string.snackbar_empty_response), Snackbar.LENGTH_SHORT)
+                        .setAction(getString(R.string.hide),null)
+                        .show()
+                }
             })
         }
 

@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/nav_graph"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
     app:startDestination="@id/mainFragment">
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.sign.movietoday.ui.fragments.MainFragment"
+        tools:layout="@layout/main_fragment_layout"
         android:label="MainFragment" >
         <action
             android:id="@+id/action_mainFragment_to_moviesListFragment"
@@ -16,6 +19,7 @@
     <fragment
         android:id="@+id/movieFragment"
         android:name="com.sign.movietoday.ui.fragments.MovieFragment"
+        tools:layout="@layout/movie_fragment_layout"
         android:label="MovieFragment" >
         <action
             android:id="@+id/action_movieFragment_to_savedFragment"
@@ -27,6 +31,7 @@
     <fragment
         android:id="@+id/moviesListFragment"
         android:name="com.sign.movietoday.ui.fragments.MoviesListFragment"
+        tools:layout="@layout/movieslist_fragment_layout"
         android:label="MoviesListFragment" >
         <argument
             android:name="showingMovieType"
@@ -38,6 +43,7 @@
     <fragment
         android:id="@+id/savedFragment"
         android:name="com.sign.movietoday.ui.fragments.SavedFragment"
+        tools:layout="@layout/saved_fragment_layout"
         android:label="SavedFragment" >
         <action
             android:id="@+id/action_savedFragment_to_movieFragment"
@@ -45,6 +51,7 @@
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
+        tools:layout="@layout/search_fragment_layout"
         android:name="com.sign.movietoday.ui.fragments.SearchFragment"
         android:label="SearchFragment" >
         <action
@@ -54,5 +61,6 @@
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.sign.movietoday.ui.fragments.SettingsFragment"
+        tools:layout="@layout/settings_fragment_layout"
         android:label="SettingsFragment" />
 </navigation>
