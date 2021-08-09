@@ -111,6 +111,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
             android:layout_marginTop="20dp"
+            android:textSize="16sp"
             android:fontFamily="sans-serif-condensed"
             android:textColor="@android:color/white"
             app:layout_constraintEnd_toEndOf="parent"
