@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavArgs
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -21,6 +22,7 @@ import com.sign.movietoday.ui.MainActivity
 import com.sign.movietoday.viewmodels.MovieData
 import com.sign.movietoday.viewmodels.MovieViewModel
 import kotlinx.android.synthetic.main.movieslist_fragment_layout.*
+import kotlinx.coroutines.flow.collectLatest
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -64,25 +66,51 @@ class MoviesListFragment : Fragment(R.layout.movieslist_fragment_layout) {
     private fun checkingMovieDataObserve(){
         tv_movieType.text = args.showingMovieType
         when(args.showingMovieType){
-            getString(R.string.top_rated_movies)-> observeMovieData(viewModel.topRatedMovieData)
-            getString(R.string.trending_movies_today)-> observeMovieData(viewModel.trendingMovieData)
-            getString(R.string.upcoming_movies)->  observeMovieData(viewModel.upcomingMovieData)
+            getString(R.string.top_rated_movies)-> getTopRatedData()
+            getString(R.string.trending_movies_today)-> getTrendingData()
+            getString(R.string.upcoming_movies)->  getUpcomingData()
         }
     }
 
-    private fun observeMovieData(movieData: MovieData){
-        movieData.observe(viewLifecycleOwner, Observer {response ->
-            when(response){
-                is Resource.Succes->{
-                    response.data?.let { trendingResponse ->
-                        movieListAdapter.differ.submitList(trendingResponse.results)
-                    }
-                }
-                is Resource.Error -> {
-                    response.message?.let {message->
-                        Log.e("SIMPLE", "An error occured $message")
-                    }
-                }
-            }  })
+//    private fun observeMovieData(movieData: MovieData){
+//        movieData.observe(viewLifecycleOwner, Observer {response ->
+//            when(response){
+//                is Resource.Succes->{
+//                    response.data?.let { trendingResponse ->
+//                        movieListAdapter.differ.submitList(trendingResponse.results)
+//                    }
+//                }
+//                is Resource.Error -> {
+//                    response.message?.let {message->
+//                        Log.e("SIMPLE", "An error occured $message")
+//                    }
+//                }
+//            }  })
+//    }
+
+    private fun getTrendingData(){
+        lifecycleScope.launchWhenStarted {
+            viewModel.getTrendingFlowPagingData().collectLatest {
+                movieListAdapter.submitData(it)
+            }
+        }
+    }
+
+    private fun getUpcomingData(){
+        lifecycleScope.launchWhenStarted {
+            viewModel.getUpcomingFlowPagingData().collectLatest {
+                movieListAdapter.submitData(it)
+            }
+        }
+
+    }
+
+    private fun getTopRatedData(){
+        lifecycleScope.launchWhenStarted {
+            viewModel.getTopRatedFlowPagingData().collectLatest {
+                movieListAdapter.submitData(it)
+            }
+        }
+
     }
 }

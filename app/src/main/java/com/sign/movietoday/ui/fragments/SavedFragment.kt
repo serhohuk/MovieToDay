@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.sign.movietoday.R
 import com.sign.movietoday.adapters.ListItemDecorator
 import com.sign.movietoday.adapters.MovieListAdapter
+import com.sign.movietoday.adapters.SavedListAdapter
 import com.sign.movietoday.ui.MainActivity
 import com.sign.movietoday.viewmodels.MovieViewModel
 import kotlinx.android.synthetic.main.movieslist_fragment_layout.*
@@ -19,7 +20,7 @@ import kotlinx.android.synthetic.main.saved_fragment_layout.*
 class SavedFragment : Fragment(R.layout.saved_fragment_layout) {
 
     private lateinit var viewModel : MovieViewModel
-    private lateinit var savedAdapter: MovieListAdapter
+    private lateinit var savedAdapter: SavedListAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -36,7 +37,7 @@ class SavedFragment : Fragment(R.layout.saved_fragment_layout) {
     }
 
     fun initAdapter(){
-        savedAdapter = MovieListAdapter()
+        savedAdapter = SavedListAdapter()
         val space = resources.getDimensionPixelSize(R.dimen.recycler_view_items_space)
         val itemDecorator = ListItemDecorator(space)
         rv_saved.apply {

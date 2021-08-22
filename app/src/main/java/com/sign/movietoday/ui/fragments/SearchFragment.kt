@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.sign.movietoday.R
 import com.sign.movietoday.adapters.ListItemDecorator
 import com.sign.movietoday.adapters.MovieListAdapter
+import com.sign.movietoday.adapters.SavedListAdapter
 import com.sign.movietoday.other.Constants.LANG_ENG
 import com.sign.movietoday.other.Constants.LANG_RU
 import com.sign.movietoday.other.Constants.LANG_UA
@@ -27,7 +28,7 @@ import kotlinx.coroutines.launch
 
 class SearchFragment : Fragment(R.layout.search_fragment_layout) {
     private lateinit var viewModel: MovieViewModel
-    private lateinit var searchAdapter : MovieListAdapter
+    private lateinit var searchAdapter : SavedListAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -70,7 +71,7 @@ class SearchFragment : Fragment(R.layout.search_fragment_layout) {
     }
 
     private fun setupRecView(){
-        searchAdapter = MovieListAdapter()
+        searchAdapter = SavedListAdapter()
         val space = resources.getDimensionPixelSize(R.dimen.recycler_view_items_space)
         val itemDecorator = ListItemDecorator(space)
         rv_search.apply {

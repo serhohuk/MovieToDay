@@ -5,15 +5,22 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import com.sign.movietoday.models.genresrequest.Genre
 import com.sign.movietoday.models.genresrequest.GenreResponse
 import com.sign.movietoday.models.movielistrequest.MovieResponse
 import com.sign.movietoday.models.movielistrequest.Result
 import com.sign.movietoday.models.trailerrequest.TrailerResponse
 import com.sign.movietoday.other.Constants.LANG_ENG
+import com.sign.movietoday.other.RequestType
 import com.sign.movietoday.other.Resource
+import com.sign.movietoday.paging.MoviesPageSource
 import com.sign.movietoday.repository.MovieRepository
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import retrofit2.Response
 import javax.inject.Inject
@@ -163,6 +170,21 @@ class MovieViewModel @Inject constructor(private val repository: MovieRepository
 
     fun getMovieByID(id : Int) : LiveData<Result>{
         return repository.getByID(id)
+    }
+
+    fun getTrendingFlowPagingData() : Flow<PagingData<Result>>{
+        return Pager (config = PagingConfig(pageSize = 20, maxSize = 200),
+        pagingSourceFactory = {MoviesPageSource(repository,requestLang,RequestType.Trending)}).flow.cachedIn(viewModelScope)
+    }
+
+    fun getUpcomingFlowPagingData() : Flow<PagingData<Result>>{
+        return Pager (config = PagingConfig(pageSize = 20, maxSize = 200),
+            pagingSourceFactory = {MoviesPageSource(repository,requestLang,RequestType.Upcoming)}).flow.cachedIn(viewModelScope)
+    }
+
+    fun getTopRatedFlowPagingData() : Flow<PagingData<Result>>{
+        return Pager (config = PagingConfig(pageSize = 20, maxSize = 200),
+            pagingSourceFactory = {MoviesPageSource(repository,requestLang,RequestType.TopRated)}).flow.cachedIn(viewModelScope)
     }
 
 }
